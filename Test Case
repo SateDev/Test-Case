@@ -22,6 +22,8 @@ cryptogen
 
 Step 2
 
+cd fabric-samples
+cd first-network
 
 cryptogen generate --config=./crypto-config.yaml
 
