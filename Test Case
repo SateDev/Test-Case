@@ -1,0 +1,59 @@
+Sudo su
+
+curl -sSL http://bit.ly/2ysbOFE | bash -s 1.2.1
+
+cd fabric-samples/bin
+
+ls
+
+
+If on docker labs, run below commands to install a required utility
+
+apk --no-cache add ca-certificates wget
+wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
+apk add glibc-2.29-r0.apk
+
+export PATH=/root/fabric-samples/bin/:$PATH
+
+cryptogen
+
+
+
+Step 2
+
+
+cryptogen generate --config=./crypto-config.yaml
+
+Step 3 
+
+configtxgen -profile TwoOrgsOrdererGenesis -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
+
+
+configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID testchannel
+
+
+configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID testchannel -asOrg Org1MSP
+
+
+configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID testchannel -asOrg Org1MSP
+
+
+
+
+
+
+Step 4
+
+IMAGE_TAG=latest docker-compose -f docker-compose-cli.yaml up -d
+
+
+
+Step 5
+
+docker exec -it cli bash
+
+peer channel –help
+
+peer chaincode –help
+
