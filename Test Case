@@ -60,3 +60,13 @@ peer channel –help
 peer chaincode –help
 
 https://hyperledger-fabric.readthedocs.io/en/release-1.4/network/network.html
+
+
+
+
+curl -sSL http://bit.ly/2ysbOFE | bash -s 1.2.1
+
+git clone https://github.com/SateDev/hyperledger_chaincode_asset_registry.git
+
+
+
